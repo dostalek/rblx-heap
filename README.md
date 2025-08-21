@@ -13,9 +13,21 @@ local function cmp(parent, child)
 	return parent > child
 end
 
--- Create a new Heap object from a table by passing the comparator function
+-- Simple comparator function for a min-heap
+local function otherCmp(parent, child)
+	return parent < child
+end
+
+-- Construct a new Heap object from a comparator function and table
 local myHeap = Heap.new(cmp, {5, 4, 7, 9, 1})
 
+-- Construct an empty Heap object from a comparator function
+local otherHeap = Heap.new(otherCmp)
+otherHeap:Insert(5)
+otherHeap:Insert(1)
+otherHeap:Insert(3)
+
 -- Extract (remove) and print the root node's value
-print(myHeap.Extract()) -- 9
+print(myHeap:Extract())	   -- Out: 9
+print(otherHeap:Extract()) -- Out: 1
 ```
