@@ -1,19 +1,38 @@
+--!strict
+
 local Heap = {}
 Heap.__index = Heap
 
-function Heap.new(cmpFunc: (parent: any, child: any) -> boolean, tbl: {any}?)
-	local newHeap = setmetatable({}, Heap)
+export type Heap = typeof(setmetatable(
+	{} :: {
+		Cmp: (parent: any, child: any) -> boolean,
+		Heap: {any}
+	},
+	Heap
+	)
+)
 
-	newHeap.Cmp = cmpFunc
-	newHeap.Heap = {}
+-- Constructs a new Heap object
+-- @param cmpFunc (parent: any, child: any) -> boolean A comparator function that 
+-- defines the order of the Heap
+-- @param tbl {any}? A table to be heapified
+-- @return Heap The new Heap object
+function Heap.new(cmpFunc: (parent: any, child: any) -> boolean, tbl: {any}?): Heap
+	--local newHeap = setmetatable({}, Heap)
+	local self = {
+		Cmp = cmpFunc,
+		Heap = {}
+	}
+	
+	setmetatable(self, Heap)
 
 	if tbl then
 		for _, v in tbl do
-			newHeap:Insert(v)
+			self:Insert(v)
 		end
 	end
-
-	return newHeap
+	
+	return self
 end
 
 function Heap:_heapify(i: number): ()
