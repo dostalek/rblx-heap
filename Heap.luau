@@ -35,6 +35,8 @@ function Heap.new(cmpFunc: (parent: any, child: any) -> boolean, tbl: {any}?): H
 	return self
 end
 
+-- Helper function to return order to the Heap
+-- @param i number The start index
 function Heap:_heapify(i: number): ()
 	local size = #self.Heap
 
@@ -59,6 +61,8 @@ function Heap:_heapify(i: number): ()
 	end
 end
 
+-- Inserts an element into the Heap
+-- @param element any The element to insert
 function Heap:Insert(element: any): ()
 	table.insert(self.Heap, element)
 
@@ -79,6 +83,8 @@ function Heap:Insert(element: any): ()
 	return
 end
 
+-- Extracts the root element from the Heap
+-- @return any The extracted element
 function Heap:Extract(): any?
 	local size = #self.Heap
 	
