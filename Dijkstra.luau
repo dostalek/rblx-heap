@@ -10,7 +10,7 @@ local function dijkstra(graph, source)
 	
 	local priorityQueue = Heap.new(function(p, c) return p[1] < c[1] end)
 	
-	for v, _ in graph.Graph do
+	for v, _ in graph do
 		prev[v] = nil
 		dist[v] = math.huge
 	end
@@ -21,7 +21,7 @@ local function dijkstra(graph, source)
 	while not priorityQueue:IsEmpty() do
 		local u = priorityQueue:Extract()[2]
 		
-		for v, w in graph.Graph[u] do
+		for v, w in graph[u] do
 			local alt = dist[u] + w
 			
 			if alt < dist[v] then
