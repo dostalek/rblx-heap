@@ -1,7 +1,8 @@
 local Heap = require(script.Parent.Heap)
 
 -- Determines the shortest path from a source vertex to every other vertex of a graph
--- @param graph A graph as represented by an adjacency list (list[u][v] = w)
+-- @param graph An undirected graph as represented by an adjacency list
+-- (list[u][v] = w)
 -- @param source The start vertex
 -- @return A tuple containing a list of distances and a list of predecessors
 local function dijkstra(graph, source)	
