@@ -18,7 +18,6 @@ export type Heap = typeof(setmetatable(
 -- @param tbl {any}? A table to be heapified
 -- @return Heap The new Heap object
 function Heap.new(cmpFunc: (parent: any, child: any) -> boolean, tbl: {any}?): Heap
-	--local newHeap = setmetatable({}, Heap)
 	local self = {
 		Cmp = cmpFunc,
 		Heap = {}
@@ -63,7 +62,8 @@ end
 
 -- Inserts an element into the Heap
 -- @param element any The element to insert
-function Heap:Insert(element: any): ()
+-- @return number The index of the element in the Heap
+function Heap:Insert(element: any): number
 	table.insert(self.Heap, element)
 
 	local elementIndex = #self.Heap
@@ -80,7 +80,7 @@ function Heap:Insert(element: any): ()
 		parentIndex = math.ceil((elementIndex - 1) / 2)
 	end
 
-	return
+	return elementIndex
 end
 
 -- Extracts the root element from the Heap
@@ -97,6 +97,12 @@ function Heap:Extract(): any?
 	self:_heapify(rootIndex)
 
 	return rootValue
+end
+
+-- Returns whether the Heap is empty
+-- @return boolean Whether the Heap is empty
+function Heap:IsEmpty(): boolean
+	return #self.Heap == 0
 end
 
 return Heap
