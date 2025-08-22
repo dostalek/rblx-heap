@@ -2,7 +2,7 @@
 
 A binary heap implementation for Roblox's Luau programming language.
 
-# Example Usage
+## Example Usage
 
 ```lua
 -- Require the Heap module
@@ -31,3 +31,7 @@ otherHeap:Insert(3)
 print(myHeap:Extract())	   -- Out: 9
 print(otherHeap:Extract()) -- Out: 1
 ```
+
+## Dijkstra's Algorithm
+
+Dijkstra's algorithm utilizes a minimum priority queue (min-heap) data strucutre to efficiently compute the shortest path from a source vertex to all other vertices in a graph. See [Dijkstra.luau](Dijkstra.luau) for an implementation.
